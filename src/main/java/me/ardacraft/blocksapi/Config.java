@@ -31,7 +31,7 @@ import com.google.gson.annotations.Expose;
 public class Config
 {
     @Expose
-    private boolean autoupdate = true;
+    private boolean autoupdate = false;
     @Expose
     private String updateUrl = "http://acblocks.ardacraft.me/updates.json";
 
