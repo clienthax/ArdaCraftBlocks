@@ -64,18 +64,6 @@ public class CustomLeaf extends BlockLeavesBase implements ACBlock
 	}
 
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess ib, int x, int y, int z, int side)
-	{
-		Block block = ib.getBlock(x, y, z);
-		Block offset = ib.getBlock(x - Facing.offsetsXForSide[side], y - Facing.offsetsYForSide[side], z - Facing.offsetsZForSide[side]);
-		if (block instanceof CustomGlass && offset instanceof CustomGlass)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister register)
 	{
