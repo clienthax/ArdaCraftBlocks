@@ -158,6 +158,8 @@ public class ACBlocks
                         LogHelper.log("Found duped blockpack: " + mc.getName() + ". Adding latest version: " + mc.getVersion());
                     }
                     containerMap.put(mc.getName().toLowerCase(), mc);
+                } else {
+	                LogHelper.log("Found folder in blockpack that isn't prefixed with \"blockpack-\", :"+name);
                 }
             }
         }
