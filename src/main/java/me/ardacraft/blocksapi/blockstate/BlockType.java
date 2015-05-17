@@ -69,7 +69,7 @@ public enum BlockType
     CHAIR,
     SHORT_CHAIR,
     DOUBLE_PLANT,
-    ;
+    Leaf;
 
     // Some blocks destroy instantly
     public static float getHardness(BlockType bt)

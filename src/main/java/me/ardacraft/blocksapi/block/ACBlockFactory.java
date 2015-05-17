@@ -144,6 +144,8 @@ public class ACBlockFactory
                 LangHelper.addTranslation(plant.getUnlocalizedName());
                 GameRegistry.registerItem(plant, tallPlant.getUnlocalizedName());
                 return tallPlant;
+            case LEAF:
+	            return new CustomLeaf(base, name, tw);
             default:
                 return null;
         }
