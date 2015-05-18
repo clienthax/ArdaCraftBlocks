@@ -23,6 +23,7 @@
 package me.ardacraft.blocksapi;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IFMLSidedHandler;
 import cpw.mods.fml.common.Mod;
@@ -37,6 +38,8 @@ import cpw.mods.fml.server.FMLServerHandler;
 import me.ardacraft.blocksapi.commands.EjectCommand;
 import me.ardacraft.blocksapi.entity.ChairManager;
 import me.ardacraft.blocksapi.entity.EntityChair;
+import me.ardacraft.blocksapi.entity.EntityCustomPainting;
+import me.ardacraft.blocksapi.entity.renderers.CustomPaintingRenderer;
 import me.ardacraft.blocksapi.helper.*;
 import me.ardacraft.blocksapi.helper.Timer;
 import me.ardacraft.blocksapi.inventory.ACTab;
@@ -99,6 +102,7 @@ public class ACBlocks
     public void init(FMLPostInitializationEvent e)
     {
         EntityRegistry.registerModEntity(EntityChair.class, "EntityChair", 0, ACBlocks.instance, 80, 1, false);
+	    EntityRegistry.registerModEntity(EntityCustomPainting.class, "EntityCustomPainting", 1, ACBlocks.instance, 80, 1, false);
         if (containers.isEmpty())
         {
             return;
@@ -127,6 +131,7 @@ public class ACBlocks
             ModContainer mc = new Language();
             FMLClientHandler.instance().addModAsResource(mc);
             ACTab.clearTabIconList();
+	        RenderingRegistry.registerEntityRenderingHandler(EntityCustomPainting.class, new CustomPaintingRenderer());
         }
         containers.clear();
     }

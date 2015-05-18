@@ -30,6 +30,7 @@ import me.ardacraft.blocksapi.block.CustomSlab;
 import me.ardacraft.blocksapi.helper.BlockHelper;
 import me.ardacraft.blocksapi.helper.LangHelper;
 import me.ardacraft.blocksapi.inventory.ACTab;
+import me.ardacraft.blocksapi.item.CustomItemPainting;
 import me.ardacraft.blocksapi.item.CustomItemSlab;
 import me.ardacraft.blocksapi.item.args.CustomItemSlabArgs;
 import net.minecraft.block.Block;
@@ -73,7 +74,7 @@ public class BlockState
 
     // Registers all the block shapes
     // Should probably check that it isn't added two blocks with the same name as that causes a crash, but it doesn't
-    public void registerBlocks()
+    public void registerBlocksAndItems()
     {
         name = WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", "_");
         Block b = BlockHelper.getBaseBlock(sound);
@@ -96,6 +97,9 @@ public class BlockState
                 case LIGHT_WEB:
                     registerLightEmitter(b, bt, ct);
                     break;
+                case PAINTING:
+	                registerPainting(name, textures, ct);
+	                break;
                 default:
                     ACBlock block = ACBlockFactory.getBlock(b, name, textures, bt, tab);
                     registerBlock(block, hardness, ct);
@@ -103,6 +107,21 @@ public class BlockState
             }
         }
     }
+
+	private void registerPainting(String name, TextureWrapper textures, ACTab tab) {
+		Item item = new CustomItemPainting(name, textures);
+		GameRegistry.registerItem(item, item.getUnlocalizedName());
+		LangHelper.addTranslation("item." + item.getUnlocalizedName().substring(5));
+
+		if (Meta.CLIENT)
+		{
+			item.setCreativeTab(tab);
+			if (ACTab.isTabIcon(item.getUnlocalizedName()))
+			{
+				tab.setTabItem(item);
+			}
+		}
+	}
 
     // Slabs need a half and double block registering, also needs an item
     // Only adds the half-slab to creative inventory

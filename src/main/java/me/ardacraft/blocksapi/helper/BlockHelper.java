@@ -76,7 +76,7 @@ public class BlockHelper
                         name = name.replace(BLOCKS_PATH, "");
                         // Uses topmost folder name to name the creative tab
                         bs.setTab(name.split("/", 2)[0]);
-                        bs.registerBlocks();
+                        bs.registerBlocksAndItems();
                         loaded++;
                     }
                 }
@@ -112,7 +112,7 @@ public class BlockHelper
                     {
                         name = name.replace(BLOCKS_PATH, "");
                         bs.setTab(name.split("/", 2)[0]);
-                        bs.registerBlocks();
+                        bs.registerBlocksAndItems();
                         loaded++;
                     }
                 }
